@@ -1,0 +1,144 @@
+<template>
+    <div id="container"> 
+        <div id="home">
+            <div>
+                <p>Groupomania, le réseau social de votre entreprise!</p>
+            </div>
+            <div>
+                <p>Venez echanger et partager!</p>
+            </div>
+            <div>
+                <p>Publier et poster !</p>
+            </div>
+        </div>
+        <div id="signup">
+            <div id="subscribe">
+                <h3>Inscription</h3>
+            </div>
+            <div id="connexion">
+                <router-link to="/login">Connexion</router-link>
+            </div>
+        </div>
+        <div class="register">
+            <input type="text" id="firstName" placeholder="Prénom" aria-label="Prénom de l'utilisateur" v-model="dataUser.firstName"/>
+            <input type="text" id="lastName" placeholder="Nom" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
+            <input type="email" id="email" placeholder="name@exemple.com" v-model="dataUser.email"/>
+            <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe de l'utilisateur" v-model="dataUser.password" v-on:keyup.enter="submitSignup"/>
+            <button type="submit" aria-label="Inscription de l'utilisateur" @click.prevent="submitSignup" class="btn">S'inscrire</button>
+        </div>
+
+    </div>
+    
+</template>
+
+<script>
+import axios from "axios";
+export default {
+    name: 'signup',  
+    data() {
+        return {
+            dataUser: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            }
+        };
+    },
+    methods: {
+        submitSignup() {
+            if (this.firstName !== null || this.lastName !== null || this.email !== null || this.password !== null) {
+                axios
+                    .post("http://localhost:3000/api/users/signup",
+                        this.dataUser
+                    )
+                    .then(response => {
+                        console.log(response);
+                        this.$router.push("/login");
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    })
+            } else {
+                alert("L'un des champs n'est pas renseigné !");
+            }
+        },
+    },
+};
+</script>
+
+<style>
+    body, * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Texturina', serif;
+    }
+    #container {
+        display: flex;
+        justify-content: center;
+        margin: 100px;
+    }
+
+     #signup {
+      text-align: center;
+      margin-left: 80px;
+    }
+    #subscribe h3 {
+        padding: 10px 0;
+        font-size: 3rem;
+    }
+    #connexion a {
+        text-decoration: none;
+        color: black;
+        font-size: 1rem;
+    }
+    #connexion a:hover{
+        color: #FD2D01;
+    }
+
+    .register{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 50px 0 50px;
+    }
+    .register input {
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
+
+    #accueil {
+
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        padding: 165px 80px;
+    }
+    #home div i {
+        float: left;
+        font-size: 35px;
+        padding-top: 10px;
+    }
+    #home div p {
+        font-size: 2rem;
+    }
+    #home div {
+        padding: 10px;
+    }
+
+    .btn {
+        width: 50%;
+        padding: 5px;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        margin-top: 50px;
+        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));       
+    }
+    .btn:hover {
+        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
+        background-color: #FD2D01;
+    }
+
+</style>
