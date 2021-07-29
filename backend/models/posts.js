@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING,
     attachments: DataTypes.STRING,
     comments: DataTypes.STRING,
-    createAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Posts',

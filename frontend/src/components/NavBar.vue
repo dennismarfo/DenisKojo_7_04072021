@@ -1,14 +1,15 @@
+
 <template>
     <div id="nav">
         <div class="logo">
-            <router-link to="/"><img src="" alt="logo" id="logo-groupomania"></router-link>
+            <router-link to="/"><img src="../assets/icon.png" id="logo-groupomania"></router-link>
         </div>
         <div id="nav-info">
-            <div v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
+            <div>
                 <div role="link" aria-label="Accès aux informations utilisateurs" class="navbar-user">
                     <ul id="list">
-                        <li><router-link to="/account" class="menu">Informations</router-link></li>
-                        <li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>
+                        <li></li>
+                        <li></li>
                         <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
                     </ul>
                 </div>
@@ -17,38 +18,8 @@
     </div>
 </template>
 
-<script>
-import axios from 'axios';
-export default {
-    name: 'Navbar',
-    data() {
-        return {
-            userPhoto: '',
-            admin: '',
-            acount: ''
-        }
-        
-    },
-    created() {
-        if (this.cookie == null) {
-            return false;
-        } else {
-            axios
-                .get('http://localhost:3000/api/', {
-                    headers: { 
-                    Authorization: "Bearer " + this.cookie }
-                })
-                .then(response => {
-                    this.userPhoto = response.data.user.photo;
-                    this.admin = response.data.user.permission;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-    }
-}
-</script>
+
+
 <style>
     body, * {
         margin: 0;
@@ -67,7 +38,6 @@ export default {
     }
     .navbar-user {
         height: 100px;
-        background-image: url();
         padding: 0 20px;
         color: #ffffff;
     }

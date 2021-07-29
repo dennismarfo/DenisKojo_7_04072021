@@ -1,13 +1,13 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
-const sequelize = require('../models/index.js');
+const { sequelize } = require('../models/index.js');
 
 
 const db = require('../models/index.js');
 
 
 exports.createComment = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = decodedToken.userId;
 

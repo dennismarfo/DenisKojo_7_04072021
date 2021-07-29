@@ -50,7 +50,10 @@ export default {
             if (this.firstName !== null || this.lastName !== null || this.email !== null || this.password !== null) {
                 axios
                     .post("http://localhost:3000/api/users/signup",
-                        this.dataUser
+                    this.dataUser, {
+                            headers: {
+                            Authorization: "Bearer " }
+                            }
                     )
                     .then(response => {
                         console.log(response);
