@@ -48,7 +48,8 @@ export default {
 
 methods: {
   logOut() {
-    this.$router.go();
+    //localStorage.removeItem('token')
+    //this.$router.push('/Login'); 
   }
 },
 loadUser() {

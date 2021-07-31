@@ -1,22 +1,10 @@
 <template>
     <div id="container"> 
         <div id="home">
-            <div>
-                <p>Groupomania, le réseau social de votre entreprise!</p>
-            </div>
-            <div>
-                <p>Venez echanger et partager!</p>
-            </div>
-            <div>
-                <p>Publier et poster !</p>
-            </div>
         </div>
         <div id="signup">
             <div id="subscribe">
                 <h3>Inscription</h3>
-            </div>
-            <div id="connexion">
-                <router-link to="/login">Connexion</router-link>
             </div>
         </div>
         <div class="register">
@@ -26,6 +14,9 @@
             <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe de l'utilisateur" v-model="dataUser.password" v-on:keyup.enter="submitSignup"/>
             <button type="submit" aria-label="Inscription de l'utilisateur" @click.prevent="submitSignup" class="btn">S'inscrire</button>
         </div>
+        <div id="connexion">
+            <router-link to="/login">Vous avez un compte ?</router-link>
+         </div>
 
     </div>
     
@@ -77,14 +68,16 @@ export default {
         font-family: 'Texturina', serif;
     }
     #container {
-        display: flex;
-        justify-content: center;
-        margin: 100px;
+        width: 500px;
+        height: 50%;
+        overflow: hidden;
+        border: 0px solid #000;
+        margin: 50px auto;
+        padding: 10px;
     }
 
      #signup {
       text-align: center;
-      margin-left: 80px;
     }
     #subscribe h3 {
         padding: 10px 0;
@@ -100,10 +93,13 @@ export default {
     }
 
     .register{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 50px 50px 0 50px;
+        width: 250px;
+        height: 40%;
+        margin: 10px auto;
+        background-color: #ce1b1b82;
+        border: 2px solid #e6e6e6;
+        padding: 64px 50px;
+        border-radius: 12px;
     }
     .register input {
         margin-bottom: 30px;

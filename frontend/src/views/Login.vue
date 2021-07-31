@@ -1,29 +1,18 @@
 <template>
     <div id="container">
-        <div id="home">
-            <div>
-                <p>Groupomania, le réseau social de votre entreprise!</p>
-            </div>
-            <div>
-                <p>Venez echanger et partager!</p>
-            </div>
-            <div>
-                <p>Publier et poster !</p>
-            </div>
-        </div>
+
         <div id='login'>
-            <div id="connexion">
-                <h3>Connexion</h3>
-            </div>
             <div id="subscribe">
-                <router-link to="/signup">Inscription</router-link>
+                <div class="s-part">
+                    <router-link to="/signup">Inscription</router-link>
+                </div>
             </div>
 
         </div>
-        <div >
+        <div class="main-content" >
             <div id="connect">
-                <input type="email" id="email" placeholder="name@example.com" aria-label="email d'un utilisateur" v-model="dataUser.email"/>
-                <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe d'un utilisateur" v-model="dataUser.password" 
+                <input type="email" id="email" placeholder="Email" aria-label="email d'un utilisateur" v-model="dataUser.email"/>
+                <input type="password" id="password-input" placeholder="Mot de passe" aria-label="Mot de passe d'un utilisateur" v-model="dataUser.password" 
                 v-on:keyup.enter="submitLogin"/>
                 <button type="submit" class="btn" aria-label="Connexion d'un utilisateur" @click.prevent="submitLogin" v-on:keyup.enter="submitLogin">Se connecter</button>
             </div>
@@ -75,47 +64,49 @@ export default {
         font-family: 'Texturina', serif;
     }
     #container {
-        display: flex;
-        justify-content: center;
-        margin: 100px;
-    }
-    #home {
-/*        background-repeat: no-repeat;*/
-        background-position: 50% 50%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        padding: 165px 80px;
-    }
-    #home div i {
-        float: left;
-        font-size: 35px;
-        padding-top: 10px;
-    }
-    #home div p {
-        font-size: 2rem;
-    }
-    #home div {
+        width: 500px;
+        height: 50%;
+        overflow: hidden;
+        border: 0px solid #000;
+        margin: 50px auto;
         padding: 10px;
-        color:#FD2D01;
     }
+
+    .main-content {
+        width: 250px;
+        height: 40%;
+        margin: 10px auto;
+        background-color: #ce1b1b82;
+        border: 2px solid #e6e6e6;
+        padding: 64px 50px;
+        border-radius: 12px;
+    }
+
+    #subscribe {
+        width: 250px;
+        height: 40%;
+        margin: 10px auto;
+        border: 1px solid #e6e6e6;
+        padding: 20px 50px;
+        background-color: #ce1b1b82;
+        border-radius: 12px;
+    }
+
+
     #subscribe h3 {
         padding: 40px 0;
         font-size: 3rem;
     }
       #subscribe a {
         text-decoration: none;
-        color: black;
+        color: white;
         font-size: 1rem;
+        font-weight: bold;
     }
     #subscribe a:hover{
         color: #FD2D01;
     }
-    #login {
-      text-align: center;
-      margin-left: 80px;
-      padding-top: 50px;
-    }
+
 
      #connect{
         display: flex;
@@ -126,17 +117,18 @@ export default {
     #connect input {
         margin-bottom: 30px;
         font-size: 25px;
-        border-color: red;
         border-radius: 20px;
         padding: 12px;
     }
     .btn {
-        width: 50%;
-        padding: 10px;
-        border-radius: 15px;
-        font-size: 1.2rem;
-        margin-top: 50px;
-        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));       
+        width: 100%;
+        background-color: #ab9999;
+        border: 1px solid #ab9999;
+        padding: 9px 18px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 3px;       
     }
     .btn:hover {
         background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
