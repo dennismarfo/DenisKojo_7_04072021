@@ -137,7 +137,7 @@ export default {
         border-radius: 10px;
         width: 600px;
         height: 200px;
-        margin-left: 650px;
+        margin: auto;
     }
     .text {
         width: 220px;

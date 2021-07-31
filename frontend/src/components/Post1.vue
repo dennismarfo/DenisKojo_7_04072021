@@ -1,43 +1,66 @@
 <template>
-    <div id="post">
-        <div class="user">
-            <img :src="userPhoto">
-            <h1> {{ post.User.firstName }} {{ post.User.lastName }}</h1>
-        </div>
-            <div class="date"><p>{{ post.createdAt }}</p></div>
-            <div class="content">
-                <p>{{ post.content }}</p>
-                <img :src="postAvatar">    
+    <div id="post1">
+        <div>
+            <div class="user">
+                <img :src="userPhoto">
+                <h1> {{ firstName }} {{ lastName }} </h1>
             </div>
-            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id">
-                Delete
-                <i class="fas fa-trash-restore"></i>
+            <div class="date">
+                <p>{{ createdAt }}</p>
             </div>
-            <slot name="Comments"></slot>
-            <slot name="lastCommentZone"></slot>
         </div>
+        <div class="content">
+            <p> {{ content }}</p>
+            <img :src="postPhoto">
+        </div>
+        <!-- Dernier com -->
+        <slot name="Comments"></slot>
+        <slot name="lastCommentZone"></slot>
+    </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
-    name: 'Post',
-    props: ['post', 'user'],
-    methods: {
-        deletePost(id) {
-            axios
-            .delete('http://localhost:3000/api/posts/' + id, {
-                headers: { Authorization: localStorage.getItem("token") }
-            })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                window.alert(error);
-            })
+    name: 'Post1',
+    data() {
+        return {
         }
-    }
+    },
+    props: {
+        firstName: {
+            type: String,
+            default: ""
+        },
+        lastName: {
+            type: String,
+            default: ""
+        },
+        userPhoto: {
+            type: String,
+            default: ""
+        },
+        createdAt: {
+            type: String,
+            default: "2 heures"
+        },
+        content: {
+            type: String,
+            default: "This is my first message !"
+        },
+        myUserPhoto: {
+            type: String,
+            default:""
+        },
+        postId: {
+            type: String
+        },
+        postPhoto: {
+            type: String
+        },
+        newCommentContent: {
+            type: String
+        }
+    },
 }
 </script>
 
@@ -46,13 +69,8 @@ export default {
         margin-top: 50px;
         border-radius: 10px;
         width: 600px;
-        margin: auto;
+        margin-left: 650px;
         background-color: #c7c7c7;
-    }
-    .delete-post {
-        text-align: end;
-        padding-right: 10px;
-        font-size: 1.5rem;
     }
     .user {
         display: flex;

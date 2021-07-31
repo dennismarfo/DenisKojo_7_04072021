@@ -32,12 +32,20 @@ const routes = [
       onlyWhenLoggedOut: true
     },
     component: () => import('../views/Signup.vue')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    meta: { requireAuth: true },
+    component: () => import('../views/Account.vue')
   }
+
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
 
 export default router

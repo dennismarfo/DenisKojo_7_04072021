@@ -1,22 +1,76 @@
-
 <template>
     <div id="nav">
         <div class="logo">
-            <router-link to="/"><img src="../assets/icon.png" id="logo-groupomania"></router-link>
+            <router-link to="/"><img src="../assets/icon-above.png" id="logo-groupomania"></router-link>
         </div>
         <div id="nav-info">
-            <div>
+            <div v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div role="link" aria-label="Accès aux informations utilisateurs" class="navbar-user">
                     <ul id="list">
-                        <li></li>
-                        <li></li>
+                        <li><router-link to="/account" class="menu">Informations</router-link></li>
+                        <!--<li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>//-->
                         <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
+
+<script>
+import axios from 'axios';
+export default {
+  name: 'NavBar',
+  data() {
+    return {
+      userAvatar:'',
+      admin:'',
+      account:'',
+    }
+    
+  },
+  created() {
+    axios
+      .get('http://localhost:3000/api/users/me', {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        this.userAvatar = response.data.user.avatar;
+        this.admin = response.data.user.permission;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  },
+
+methods: {
+  logOut() {
+    this.$router.go();
+  }
+},
+loadUser() {
+  axios
+    .get('http//localhost:3000/api/users/me', {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
+    .then(response => {
+        this.userAvatar = response.data.user.avatar;
+        this.admin = response.data.user.permission;
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
+}
+
+}
+
+</script>
 
 
 
@@ -38,6 +92,7 @@
     }
     .navbar-user {
         height: 100px;
+        background-image: url(../assets/red-banner.jpeg);
         padding: 0 20px;
         color: #ffffff;
     }
