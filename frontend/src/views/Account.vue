@@ -10,8 +10,8 @@
           <input class="coordonees" type="email" aria-label="Email de l'utilisateur" placeholder="name@example.com" v-model="dataUser.email"/>
           <label id="img-profile">
               <div role="button" aria-label="Téléchargement d'un fichier">
-                  <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.avatar.name}}</span>
-                  <span class="ajout" v-else >Ajouter un fichier </span>
+                  <span v-if="newUserData.avatar">Fichier séléctionné : {{newUserData.avatar.name}}</span>
+                  <span class="ajout" v-else >Ajouter un avatar </span>
               </div>
               <input class="fichier" type="file" ref="photo" v-on:change="handleFileUpload()"/>
           </label>
@@ -150,6 +150,7 @@ export default {
 <style>
     #profile {
         text-align: center;
+        margin-top: 38px;
     }
     #profile div img {
         max-width: 150px;

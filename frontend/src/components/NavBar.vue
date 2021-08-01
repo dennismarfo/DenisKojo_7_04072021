@@ -7,7 +7,7 @@
             <div v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div role="link" aria-label="Accès aux informations utilisateurs" class="navbar-user">
                     <ul id="list">
-                        <li><router-link to="/account" class="menu">Informations</router-link></li>
+                        <li><router-link to="/account" class="menu">Mon compte</router-link></li>
                         <!--<li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>//-->
                         <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
                     </ul>
@@ -83,7 +83,6 @@ loadUser() {
     }
     #nav {
         text-align: center;
-        margin-bottom: 40px;
     }
     #logo-groupomania {
         max-width: 350px;
@@ -93,7 +92,7 @@ loadUser() {
     }
     .navbar-user {
         height: 100px;
-        background-image: url(../assets/red-banner.jpeg);
+        background-color: #ce1b1bc4;
         padding: 0 20px;
         color: #ffffff;
     }
@@ -107,7 +106,7 @@ loadUser() {
         display: flex;
         flex-direction: row;
         list-style-type: none;
-        justify-content: center;
+        justify-content: space-evenly;
     }
     @media screen and (max-width: 568px) {
         #logo-groupomania {

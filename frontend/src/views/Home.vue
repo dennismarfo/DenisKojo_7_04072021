@@ -6,7 +6,7 @@
             <Post v-for="post in allPosts" :key="post.id" v-bind:post="post" v-bind:user="user">
             <template v-slot:Comments v-if="post.Comments !== null">
                 <div class="commentaire">
-                    <button  v-on:click="showComments = showComments ? false : true">Commentaires</button>
+                    <button class="btn-cmt"  v-on:click="showComments = showComments ? false : true">Commentaires</button>
                 </div>
                     <div id="last-comment" v-if="showComments">
                         <div class="last-comment" v-for="comment in post.Comments" v-bind:key="comment.id">
@@ -25,7 +25,7 @@
                 <div>
                     <form class="comment">
                         <div class="comment-zone">
-                            
+                            <img :src="user.avatar" class="photo-user-comment">
                             <textarea v-model="newComment.content" aria-label="Zone d'un commentaire" placeholder="Écrire votre commentaire ici" class="text-comment">
                             </textarea>
                         </div>
@@ -199,14 +199,32 @@ export default {
 </script>
 
 <style>
+
+    #posts-box{
+        background-color: #F0F2F5;
+        padding-top: 28px;
+    }
+
     .commentaire {
         text-align: center;
+        margin-top: 18px;
     }
     .comment-zone {
         text-align: center;
         display: flex;
         align-content: center;
         align-items: center;
+    }
+
+    .btn-cmt {
+        background-color: white;
+        padding: 1px 15px;
+        border-radius: 8px;
+        color: #2C3E50;;
+        font-size: 17px;
+        font-weight: normal;
+        border: 1px solid firebrick;
+
     }
     .photo-user-comment {
         max-height: 30px;
@@ -223,6 +241,8 @@ export default {
         text-align: center;
         border-radius: 10px;
         margin: 0 0 0 10px;
+        background-color: #F0F2F5;
+        border: 1px solid red;
     }
     .name {
         font-size: 1.5rem;
@@ -234,6 +254,12 @@ export default {
     }
     .btn-post {
         padding: 3px 10px;
+        border-radius: 8px;
+        color: white;
+        font-size: 17px;
+        font-weight: normal;
+        border: 1px solid firebrick;
+        background-color: firebrick;
     }
     .comment {
         display: flex;

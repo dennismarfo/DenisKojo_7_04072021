@@ -133,11 +133,13 @@ export default {
     #createPost {
         text-align: center;
         padding: 20px 0;
-        background-color: #c7c7c7;
+        background-color: white;
         border-radius: 10px;
         width: 600px;
         height: 200px;
         margin: auto;
+        margin-bottom: 20px;
+        border: 1px solid red;
     }
     .text {
         width: 220px;
@@ -146,6 +148,8 @@ export default {
         text-align: center;
         border-radius: 10px;
         margin: 25px 15px 0 50px;
+        background-color: #F0F2F5;
+        border: 1px solid red;
     }
     #form {
         display: flex;

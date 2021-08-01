@@ -1,13 +1,13 @@
 <template>
     <div id="post">
         <div class="user">
-            <img :src="userPhoto">
+            <img :src="user.avatar">
             <h1> {{ post.User.firstName }} {{ post.User.lastName }}</h1>
         </div>
             <div class="date"><p>{{ post.createdAt }}</p></div>
             <div class="content">
                 <p>{{ post.content }}</p>
-                <img :src="postAvatar">    
+                <img :src="post.attachments">    
             </div>
             <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id">
                 Delete
@@ -47,7 +47,10 @@ export default {
         border-radius: 10px;
         width: 600px;
         margin: auto;
-        background-color: #c7c7c7;
+        background-color: white;
+        border: 1px solid red;
+        margin-bottom: 18px;
+        
     }
     .delete-post {
         text-align: end;
