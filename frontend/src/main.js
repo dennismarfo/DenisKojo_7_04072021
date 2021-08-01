@@ -1,5 +1,5 @@
 import App from './App.vue'
-//import Vue from 'vue'
+
 
 
 import { createApp } from 'vue'
@@ -16,6 +16,9 @@ import router from './router'
 
 // Vue.use(require('vue-moment'));
 
-createApp(App).use(router).mount('#app')
 
+
+const app = createApp(App);
+
+app.use(router).mount('#app');
 

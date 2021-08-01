@@ -1,5 +1,6 @@
 <template>
     <div id="posts-box">
+    
         <PostForm v-on:load-all-posts="onSubmit()"/>
           <!--<PostsList/>-->
         <div>
@@ -104,30 +105,21 @@ export default {
     },
     methods: {
         deletePost(id) {
-            this.$confirm(
-                {
-                    message: `Supprimer cette publication ?`,
-                    button: {
-                        no: 'Non',
-                        yes: 'Oui'
-                    },
-                    callback: confirm => {
-                        if (confirm) {
                             axios
                                 .delete('http://localhost:3000/api/posts/' + id, {
                                     headers: { Authorization: localStorage.getItem("token") }
                                 })
                                 .then(response => {
                                     console.log(response)
-                                    this.loadPosts();
+                                    this.$router.go('/')
                                 })
                                 .catch(error => {
                                     window.alert(error);
                                 })
-                        }
-                    }
-                }
-            )
+                    
+                    
+                
+            
         },
         loadPosts() {
             axios
