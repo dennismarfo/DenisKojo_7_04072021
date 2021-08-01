@@ -9,54 +9,45 @@ const regex = /[a-zA-Z0-9 _.,'’(Ééèàû)&]+$/;
 //Création d'un Post
 exports.createPost = (req, res, next) => {
     // Autorisation d'authentification
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = decodedToken.userId;
 
     const User = db.Users;
 
     User.findOne({ id: userId })
-        .then(user => {
-            if (user == null) {
-            return res.status(400).json({ error: 'Utilisateur non trouvé !'});
-        }
-    })
-        .catch(err => res.status(500).json({ err }));
+         .then(user => {
+             if (user == null) {
+                 return res.status(400).json({ error: 'Utilisateur non trouvé !'});
+       }
+     }).catch(err => res.status(500).json({ err }));
 
-        const Posts = db.Posts;
+    const Posts = db.Posts;
 
-        if (!regex.test(Posts.content)) {
-            return res.status(500).json({ error: 'Caractères invalides !' });
-        } else {
-            const newPost = Posts.create({
-                user_id: userId,
-                content: req.body.content,
-                attachments: req.body.content && req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: null,
+    if (!regex.test(Posts.content)) {
+        return res.status(500).json({ error: 'Caractères invalides !' });
+    } else {
+        const newPost = Posts.create({
+            user_id: userId,
+            content: req.body.content,
+            attachments: req.body.content && req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: null,
 
-            })
-            .then(newPost => res.status(201).json( newPost ))
-            .catch(error => res.status(400).json({ error }));
-        }
+        })
+        .then(newPost => res.status(201).json( newPost ))
+        .catch(error => res.status(400).json({ error }));
+    }
 };
 
 // Afichage de tout les posts
 exports.getAllPosts = (req, res, next) => {
     
     const Posts = db.Posts;
-
+    
     Posts.findAll({
-        order: sequelize.literal('updatedAt, DESC'),
-        include: [ {
-            model:db.Users,
-            attributes: ['firstName', 'lastName', 'photo']
-        }, {
-            model:db.Comments,
-            include: {
-                model:db.Users
-        }
-    } ]
+        // order: ['updatedAt, DESC'],
+
     }).then(posts => res.status(200).json( posts ))
-    .catch(error => res.status(400).json({ error: "Pas de publications correspondantes.", error: error }))
+    .catch(error => res.status(400).json({ error: error }))
 };
 
 // Afficher un post

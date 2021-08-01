@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 
 const app = express();
@@ -10,6 +11,9 @@ const helmet = require("helmet");
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
 const commentsRoutes = require('./routes/comments')
+const adminRoutes = require('./routes/admin')
+
+require('dotenv').config();
 
 //HEADERS Evite les erreurs CORS
 app.use((req, res, next) => {
@@ -22,14 +26,21 @@ app.use((req, res, next) => {
     next();
   });
 
+
+
+
+app.use(bodyParser.urlencoded({ extended: true}));  
 app.use(bodyParser.json());
 
 app.use(helmet());
+
+app.use(cors());
  
 
-app.use('/api/auth', usersRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/posts', postsRoutes);
 app.use('/api/posts', commentsRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
