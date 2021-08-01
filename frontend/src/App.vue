@@ -1,8 +1,7 @@
 <template>
-  <div id="nav">
-    <vue-confirm-dialog></vue-confirm-dialog>
-    <NavBar/>
-  </div>
+<div>
+<NavBar/>
+</div>
   <router-view/>
 </template>
 

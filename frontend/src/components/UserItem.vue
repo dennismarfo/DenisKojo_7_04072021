@@ -3,7 +3,7 @@
     <div class="card">
         <div>
             <div class="user-item">
-                <img id="img-profile" :src="photo">
+                <img id="img-profile" :src="avatar">
                 <div>
                     <p>{{ firstName }} {{ lastName }}</p>
                     <p>{{ email }}</p>
@@ -34,7 +34,7 @@ export default {
             type: String,
             default: 'Deweerdt'
         },
-        photo: {
+        avatar: {
             type: String,
             default: 'http://localhost:3000/images/DSC04282.jpg1604754621573.jpg'
         },

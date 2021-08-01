@@ -13,7 +13,7 @@
                   <span v-if="newUserData.avatar">Fichier séléctionné : {{newUserData.avatar.name}}</span>
                   <span class="ajout" v-else >Ajouter un avatar </span>
               </div>
-              <input class="fichier" type="file" ref="photo" v-on:change="handleFileUpload()"/>
+              <input class="fichier" type="file" ref="avatar" v-on:change="handleFileUpload()"/>
           </label>
           <div id="btn-profile">
               <div>
@@ -116,16 +116,7 @@ export default {
         handleFileUpload(){
           this.newUserData.avatar = this.$refs.avatar.files[0];
         },
-        deleteUser() {
-            this.$confirm(
-                {
-                    message: `Êtes-vous sur de vouloir supprimer votre compte ?`,
-                    button: {
-                        no: 'No',
-                        yes: 'Yes'
-                    },
-                    callback: confirm => {
-                        if (confirm) {
+        deleteUser() {               
                         const id = this.dataUser.id;
                         axios
                             .delete('http://localhost:3000/api/users/' + id, {
@@ -136,10 +127,10 @@ export default {
                             this.$router.push("/signup");
                             })
                             .catch(error => console.log(error))
-                        }
-                    }
-                }
-            )
+                        
+                    
+                
+            
         },
     },
 };

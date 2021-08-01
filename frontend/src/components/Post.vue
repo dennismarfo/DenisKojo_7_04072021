@@ -1,16 +1,16 @@
 <template>
     <div id="post">
         <div class="user">
-            <img :src="user.avatar">
+            <img :src="post.User.avatar">
             <h1> {{ post.User.firstName }} {{ post.User.lastName }}</h1>
         </div>
-            <div class="date"><p>{{ post.createdAt }}</p></div>
+            <div class="date"><p>{{  moment(post.createdAt).format("ddd MMM DD, YYYY [at] HH:mm a") }}</p></div>
             <div class="content">
                 <p>{{ post.content }}</p>
-                <img :src="post.attachments">    
+                <img :src="post.attachments" v-if="post.attachments" >    
             </div>
-            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id">
-                Delete
+            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission === 1">
+                Supprimer
                 <i class="fas fa-trash-restore"></i>
             </div>
             <slot name="Comments"></slot>
@@ -20,10 +20,14 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
     name: 'Post',
     props: ['post', 'user'],
+    created: function () {
+    this.moment = moment;
+  },
     methods: {
         deletePost(id) {
             axios

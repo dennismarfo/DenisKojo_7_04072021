@@ -9,7 +9,7 @@
                     <ul id="list">
                         <li><router-link to="/account" class="menu">Mon compte</router-link></li>
                         <!--<li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>//-->
-                        <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
+                        <li><router-link to="/login" class="logOut menu" @click="logOut()">Se déconnecter</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 export default {
   name: 'NavBar',
   data() {
@@ -30,44 +30,14 @@ export default {
     }
     
   },
-  created() {
-    axios
-      .get('http://localhost:3000/api/users/me', {
-        headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      })
-      .then(response => {
-        this.userAvatar = response.data.user.avatar;
-        this.admin = response.data.user.permission;
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  },
+
 
 methods: {
   logOut() {
-    //localStorage.removeItem('token')
-    //this.$router.push('/Login'); 
+    localStorage.removeItem('token');
   }
 },
-loadUser() {
-  axios
-    .get('http//localhost:3000/api/users/me', {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    })
-    .then(response => {
-        this.userAvatar = response.data.user.avatar;
-        this.admin = response.data.user.permission;
-    })
-    .catch(error => {
-        console.log(error);
-    })
 
-}
 
 }
 
