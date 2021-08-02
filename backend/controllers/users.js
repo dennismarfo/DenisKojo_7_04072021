@@ -96,18 +96,23 @@ exports.delete = (req, res, next) => {
       if (user.avatar !== 'http://localhost:3000/images/avatar.png') {
       const filename = user.avatar.split('/images/')[1];
       fs.unlink(`images/${filename}`, () => {
-        Users.destroy({ where: { id: req.params.id }})
+        db.Comments.destroy({ where: {user_id: req.params.id} }).then(() => {
+          db.Posts.destroy({ where: {user_id: req.params.id} })
+          .then(() => Users.destroy({ where: { id: req.params.id }})
           .then(() => res.status(200).json({ message : 'Utilisateur supprimé !' }))
-          .catch(error => res.status(400).json( error ))
-        })
+          .catch(error => res.status(400).json({  message :  'A' }))
+        )})
+          .catch(error => res.status(400).json({ message: 'image plante' }));
+
+      })
       } else {
-        Users.destroy({ 
-          where: { 
-            id: req.params.id
-          }
-        })
-        .then(() => res.status(200).json({ message: 'Utilisateur supprimé' }))
-        .catch(error => res.status(500).json({ error }));
+        db.Comments.destroy({ where: {user_id: req.params.id} }).then(() => {
+          db.Posts.destroy({ where: {user_id: req.params.id} })
+          .then(() => Users.destroy({ where: { id: req.params.id }})
+          .then(() => res.status(200).json({ message : 'Utilisateur supprimé !' }))
+          .catch(error => res.status(400).json( { message :  'B'} ))
+        )})
+          .catch(error => res.status(400).json({ message : 'D' }));
       }
     })
   };
@@ -136,11 +141,12 @@ exports.modifyUser = (req, res, next) => {
 
   const Users = db.Users;
 
+  console.log(req);
     Users.update({ 
       lastName: req.body.lastName,
       firstName: req.body.firstName,
       email: req.body.email,
-      photo: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.avatar
+      avatar: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.avatar
     },
       {where: { id: userId }
     })

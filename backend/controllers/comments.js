@@ -22,7 +22,7 @@ exports.createComment = (req, res, next) => {
     .then(user => {
         Comments.create({
             user_id: user.id,
-            post_id: req.params.id,
+            post_id: req.params.post_id,
             content: req.body.content
         })
         .then(newComment => res.status(200).json( newComment ))
