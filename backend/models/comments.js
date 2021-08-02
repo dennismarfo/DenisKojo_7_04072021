@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           name: 'user_id'
         },
+        onDelete: 'cascade',
         
       });
       models.Comments.belongsTo(models.Posts, {
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           name: 'post_id'
         },
+        onDelete: 'cascade',
         
       });
     }

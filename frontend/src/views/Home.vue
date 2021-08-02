@@ -1,6 +1,5 @@
 <template>
     <div id="posts-box">
-    
         <PostForm v-on:load-all-posts="onSubmit()"/>
           <!--<PostsList/>-->
         <div>
@@ -15,7 +14,7 @@
                             <div class="user-comment">
                                 <p class="name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
                                 <p class="comment-content">{{ comment.content }}</p>
-                            <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission == 1">
+                            <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission ">
                                 <i class="fas fa-trash-alt"></i>
                             </div>
                         </div>
@@ -43,7 +42,6 @@
 
 <script>
 import PostForm from '@/components/PostForm.vue'
-//import PostsList from '@/components/PostsList.vue'
 import Post from '@/components/Post.vue'
 import axios from 'axios'
 export default {
@@ -98,7 +96,7 @@ export default {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(response => {
-                console.log(response.data.user);
+                console.log(response.data.user.permission);
                 this.user = response.data.user;
             })
             .catch(error => console.log(error))
@@ -269,13 +267,11 @@ export default {
     }
     #last-comment {
         width: 90%;
-        margin: 0 0 20px 28px;
+        margin: 20px 0 20px 28px;
         background-color: #b1a7a6;
         border-radius: 10px;
     }
-    #last-comment {
-        background-color: #ffffff;
-    }
+    
     @media screen and (max-width: 568px) {
         .delete {
             padding: 0 7px 5px 0;
@@ -312,5 +308,9 @@ export default {
         .btn-post {
             margin: 15px 0 0 0;
         }
+    }
+    .last-comment {
+        border-bottom: 1px solid white;
+        border-bottom-width: 6px;
     }
 </style>

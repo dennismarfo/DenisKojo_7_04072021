@@ -9,13 +9,18 @@
                 <p>{{ post.content }}</p>
                 <img :src="post.attachments" v-if="post.attachments" >    
             </div>
-            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission === 1">
+            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission === true">
                 Supprimer
                 <i class="fas fa-trash-restore"></i>
             </div>
+            <router-link v-if="post.user_id === user.id" :to="{name: 'UpdatePost', params: { postId: post.id}}"> 
+                Modifier
+            </router-link>
+            
             <slot name="Comments"></slot>
             <slot name="lastCommentZone"></slot>
-        </div>
+            </div>
+            
 </template>
 
 <script>
@@ -34,6 +39,18 @@ export default {
             .delete('http://localhost:3000/api/posts/' + id, {
                 headers: { Authorization: localStorage.getItem("token") }
             })
+            .then(() => {
+                this.$router.go('/')
+            })
+            .catch(error => {
+                window.alert(error);
+            })
+        },
+        updatePost(id) {
+            axios
+            .update('http://localhost:3000/api/posts/' + id, {
+                headers: { Authorization: localStorage.getItem("token") }
+            })
             .then(response => {
                 console.log(response)
             })
@@ -41,7 +58,9 @@ export default {
                 window.alert(error);
             })
         }
+        
     }
+
 }
 </script>
 
