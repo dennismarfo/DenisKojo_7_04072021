@@ -12,7 +12,7 @@
             <input type="text" id="lastName" placeholder="Nom" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
             <input type="email" id="email" placeholder="name@exemple.com" v-model="dataUser.email"/>
             <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe de l'utilisateur" v-model="dataUser.password" v-on:keyup.enter="submitSignup"/>
-            <button type="submit" aria-label="Inscription de l'utilisateur" @click.prevent="submitSignup" class="btn">S'inscrire</button>
+            <button variant="outline-dark" type="submit" aria-label="Inscription de l'utilisateur" @click.prevent="submitSignup" class="btn">S'inscrire</button>
         </div>
         <div id="connexion">
             <router-link to="/login">Vous avez un compte ?</router-link>
@@ -68,7 +68,7 @@ export default {
         font-family: 'Texturina', serif;
     }
     #container {
-        width: 500px;
+        width: auto;
         height: 50%;
         overflow: hidden;
         border: 0px solid #000;
@@ -133,11 +133,13 @@ export default {
         border-radius: 15px;
         font-size: 1.2rem;
         margin-top: 50px;
-        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));       
+        background: white;
+        border: 1px solid gray;
+               
     }
     .btn:hover {
-        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
-        background-color: #FD2D01;
+        background-color: grey;
+        color: white;
     }
 
 </style>

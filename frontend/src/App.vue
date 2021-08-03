@@ -33,10 +33,13 @@ export default {
     font-weight: bold;
     color: white;
     font-size: 20px;
+    cursor: pointer;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+
+  }
+
+  a:hover{
+    color: grey;
   }
 }
 </style>

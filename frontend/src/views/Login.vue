@@ -64,7 +64,7 @@ export default {
         font-family: 'Texturina', serif;
     }
     #container {
-        width: 500px;
+        width: auto;
         height: 50%;
         overflow: hidden;
         border: 0px solid #000;
@@ -122,17 +122,23 @@ export default {
     }
     .btn {
         width: 100%;
-        background-color: #ab9999;
-        border: 1px solid #ab9999;
+        background: white;
+        border: 1px solid gray;
         padding: 9px 18px;
-        color: #fff;
         font-weight: bold;
         cursor: pointer;
-        border-radius: 3px;       
+        border-radius: 15px;       
     }
     .btn:hover {
-        background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
-        background-color: #FD2D01;
+        background-color: grey;
+        color: white;
+    }
+
+        @media screen and (max-width: 568px) {
+    #container {
+        width: auto;
+
+    }
     }
 
 </style>

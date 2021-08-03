@@ -57,8 +57,6 @@ methods: {
     #logo-groupomania {
         max-width: 350px;
         max-height: 200px;
-        width: 100%;
-        height: 100%;
     }
     .navbar-user {
         height: 100px;

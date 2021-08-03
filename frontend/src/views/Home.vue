@@ -85,7 +85,7 @@ export default {
                 headers: { Authorization: localStorage.getItem("token")}
             })
             .then((response) => {
-                console.log("posts", response.data);
+                
                 this.allPosts = response.data;
             })
             .catch(error => {
@@ -96,7 +96,6 @@ export default {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(response => {
-                console.log(response.data.user.permission);
                 this.user = response.data.user;
             })
             .catch(error => console.log(error))
@@ -190,9 +189,19 @@ export default {
 
 <style>
 
+    .user-comment{
+        display: flex;
+
+    }
+
+    .logo{
+        background-color: white;
+    }
+
     #posts-box{
         background-color: #F0F2F5;
         padding-top: 28px;
+        padding-bottom: 33%;
     }
 
     .commentaire {
@@ -214,6 +223,7 @@ export default {
         font-size: 17px;
         font-weight: normal;
         border: 1px solid firebrick;
+        cursor: pointer;
 
     }
     .photo-user-comment {
@@ -235,7 +245,9 @@ export default {
         border: 1px solid red;
     }
     .name {
-        font-size: 1.5rem;
+        font-size: 17px;
+        color: #181818;
+        font-weight: bold;
     }
     .comment-content {
         text-align: center;
@@ -250,6 +262,7 @@ export default {
         font-weight: normal;
         border: 1px solid firebrick;
         background-color: firebrick;
+        cursor: pointer;
     }
     .comment {
         display: flex;
@@ -268,7 +281,7 @@ export default {
     #last-comment {
         width: 90%;
         margin: 20px 0 20px 28px;
-        background-color: #b1a7a6;
+        background-color: #F0F2F5;
         border-radius: 10px;
     }
     
