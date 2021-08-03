@@ -107,3 +107,15 @@ export default {
 
 
 </script>
+<style>
+.modifier{
+    text-align: end;
+    padding: 1px 10px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 1px solid firebrick;
+    color: white;
+    background: firebrick;
+    cursor: pointer;
+}
+</style>

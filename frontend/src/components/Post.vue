@@ -9,13 +9,15 @@
                 <p>{{ post.content }}</p>
                 <img :src="post.attachments" v-if="post.attachments" >    
             </div>
-            <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission === true">
-                Supprimer
+            <div class="del-upd">
+            <button class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission === true">
+                X
                 <i class="fas fa-trash-restore"></i>
-            </div>
-            <router-link v-if="post.user_id === user.id" :to="{name: 'UpdatePost', params: { postId: post.id}}"> 
+            </button>
+            <router-link class="upd-post" v-if="post.user_id === user.id" :to="{name: 'UpdatePost', params: { postId: post.id}}"> 
                 Modifier
             </router-link>
+            </div>
             
             <slot name="Comments"></slot>
             <slot name="lastCommentZone"></slot>
@@ -65,6 +67,23 @@ export default {
 </script>
 
 <style>
+
+    .upd-post{
+        text-align: end;
+        padding: 1px 10px;
+        font-size: 16px;
+        border-radius: 16px;
+        border: 1px solid firebrick;
+        color: white;
+        background: firebrick;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .del-upd{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
     #post {
         margin-top: 50px;
         border-radius: 10px;
@@ -77,8 +96,13 @@ export default {
     }
     .delete-post {
         text-align: end;
-        padding-right: 10px;
-        font-size: 1.5rem;
+        padding: 1px 10px;
+        font-size: 16px;
+        border-radius: 16px;
+        border: 1px solid firebrick;
+        color: white;
+        background: firebrick;
+        cursor: pointer;
     }
     .user {
         display: flex;

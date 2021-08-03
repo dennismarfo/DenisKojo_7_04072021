@@ -7,7 +7,7 @@
             </div>
         </div>
         <form @submit.prevent="createPost" id="form">
-            <div>
+            <div class="textInput">
                 <textarea aria-label="Contenu texte d'un post" v-model="postContent.content" placeholder="Quoi de neuf ?" class="text"></textarea>
             </div>
             <div>
@@ -113,6 +113,10 @@ export default {
 </script>
 
 <style>
+
+    .textInput{
+        margin-bottom: 8px;
+    }
     #user {
         display: flex;
         justify-content: center;
@@ -136,7 +140,7 @@ export default {
         background-color: white;
         border-radius: 10px;
         width: 600px;
-        height: 200px;
+        height: 232px;
         margin: auto;
         margin-bottom: 20px;
         border: 1px solid red;
@@ -154,13 +158,23 @@ export default {
     #form {
         display: flex;
         justify-content: center;
+        flex-direction: column;
     }
     .upload {
-        margin-bottom: 20px;
+        margin-bottom: 13px;
         padding: 5px;
     }
     .publier {
-        padding: 0 5px 3px 5px;
+        padding: 5px 24px;
+        border-radius: 8px;
+        color: white;
+        font-size: 17px;
+        font-weight: normal;
+        border: 1px solid firebrick;
+        background-color: firebrick;
+        cursor: pointer;
+        
+
     }
     @media screen and (max-width: 568px) {
         #createPost {

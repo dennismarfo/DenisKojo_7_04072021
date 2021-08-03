@@ -176,15 +176,25 @@ export default {
       justify-content: center;
     }
     .maj {
-      margin: 0 20px 0 0;
-      padding: 0 3px 5px 3px;
-      border-radius: 7px;
-      border: solid 1px;
+      text-align: end;
+      padding: 1px 10px;
+      font-size: 16px;
+      border-radius: 16px;
+      border: 1px solid firebrick;
+      color: white;
+      background: firebrick;
+      cursor: pointer;
     }
     .delete {
-      padding: 0 3px 5px 3px;
-      border-radius: 7px;
-      border: solid 1px;
+      text-align: end;
+      padding: 1px 10px;
+      font-size: 16px;
+      border-radius: 16px;
+      border: 1px solid firebrick;
+      color: white;
+      background: firebrick;
+      cursor: pointer;
+      margin-left: 18px;
     }
 
      @media screen and (max-width: 568px) {
